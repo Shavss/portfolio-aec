@@ -16,7 +16,6 @@ export default function Home() {
         <Hero />
         <InstitutionsBanner />   {/* ← add here */}
         <Projects />
-        <About />
         <Contact />
       </div>
     </main>
