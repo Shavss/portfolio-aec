@@ -17,7 +17,7 @@ export default function Nav() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled ? 'bg-[#0E1529]/90 backdrop-blur border-b border-black/5' : ''
     }`}>
-      <div className="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div className="mx-auto w-1/2 min-w-[320px] py-5 flex justify-between items-center">
         <a href="#" className="text-gray-900 font-bold tracking-widest text-sm">
           KR<span className="text-[#6667AB]">.</span>
         </a>

@@ -3,7 +3,7 @@ export const featured = [
       name: 'Climate Active Envelopes',
       subtitle: 'Research Assistant — Professorship of Digital Fabrication',
       description:
-        'Contributed to an open-source computational design and robotic fabrication research project for climate-responsive brick wall assemblies. Extended the core assembly module with bond pattern algorithms, shading logic, and ornament generation using COMPAS graph data structures.',
+        'Contributed to computational design and robotic fabrication research for climate-responsive brick wall assemblies. Extended the parametric assembly system with bond pattern algorithms, shading logic, and ornament generation, and built a Grasshopper tool for layout visualisation, fabrication simulation, and robotic sequencing.',
       tags: ['Python', 'COMPAS', 'Rhino/Grasshopper', 'ABB Robotics', 'ROS', 'Docker', 'Shapely'],
       url: 'https://shavss.github.io/climate_active_envelopes/',
   },
@@ -11,7 +11,7 @@ export const featured = [
       name: 'Paketpost Aerial Vision',
       subtitle: 'Group Project — Technical University of Munich',
       description:
-        'Full-stack proptech web application built for a real Munich postal depot redevelopment brief. Combines interactive 3D site visualisation with live data overlays to support early-stage urban design decisions. Built with the MERN stack and deployed on Azure.',
+        'Full-stack web application for a real Munich redevelopment brief, combining interactive 3D site visualisation with live data overlays to support early-stage urban design exploration. Enables multidisciplinary teams to interrogate spatial and environmental data through a browser-based interface.',
       tags: ['MongoDB', 'Express', 'React', 'Node.js', 'Azure'],
       url: 'https://shavss.github.io/ITBE-Fusion-Lab/',
   },
@@ -19,7 +19,7 @@ export const featured = [
     name: 'Digital Naturalist',
     subtitle: 'MSc Thesis — Massachusetts Institute of Technology',
     description:
-      'Bayesian Product of Experts fusion model combining ResNet-18 vision with XGBoost habitat suitability for context-aware urban insect species classification across 8 species and 11,000+ citizen-science observations in Amsterdam. Achieved +2.5 pp average accuracy over the vision-only baseline.',
+      'Applied AI thesis building a data fusion pipeline for urban insect classification from low-cost rooftop cameras. Addressed domain shift between training imagery and real sensor hardware through sensor-mimetic augmentation, then fused vision and environmental context models via Bayesian Product of Experts to recover field accuracy.',
     tags: ['Python', 'PyTorch', 'XGBoost', 'ResNet-18', 'PoE Fusion', 'Jupyter Notebook'],
     url: 'https://github.com/Shavss/thesis-poe-fusion',
   },
@@ -27,7 +27,7 @@ export const featured = [
       name: 'Kitty Splitty',
       subtitle: 'University Project — Technical University of Munich',
       description:
-        'Group expense management prototype with full database design. Implements shared kitty creation, multi-type transaction splitting, user login tracking, and financial overviews. Built in C# with Entity Framework and SQLite for relational data persistence.',
+        'Group expense management prototype with full relational database design. Implements shared kitty creation, multi-type transaction splitting, user authentication, and financial overviews. Built in C# with Entity Framework and SQLite, following an iterative agile workflow with modular, testable architecture.',
       tags: ['C#', '.NET', 'SQL', 'Entity Framework', 'Database Design'],
       url: 'https://github.com/Shavss/kitty-split-prototype',
   },

@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion'
 import AIOrb from './AiOrb'
 
+const basePath = '/portfolio-aec'
+
 const TECHS = [
-  { name: 'Rhino / GH',  icon: null },
+  { name: 'Rhino / GH',  icon: `${basePath}/images/logo-grasshopper-10.png` },
   { name: 'Python',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
   { name: 'C#',           icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
   { name: 'JavaScript',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
@@ -16,14 +18,6 @@ const TECHS = [
 
 function TechIcon({ name }) {
   const icons = {
-    'Rhino / GH': (
-      <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 20c1-4 4-8 8-10s8-2 12 0c2 1 4 3 4 6s-2 5-5 6c-2 1-5 1-7 0" stroke="#a89cf7" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M6 22c2 2 6 4 10 4s8-2 10-4" stroke="#7c6af7" strokeWidth="1.2" strokeLinecap="round"/>
-        <circle cx="24" cy="12" r="1.5" fill="#a89cf7"/>
-        <path d="M4 20c0 0-1 3 2 5" stroke="#7c6af7" strokeWidth="1.2" strokeLinecap="round"/>
-      </svg>
-    ),
     'Power BI': (
       <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="18" width="4" height="8" rx="1" fill="#6667ab"/>
