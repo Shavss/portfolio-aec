@@ -64,12 +64,10 @@ export default function Hero() {
         </div>
 
         <p className="text-gray-500 max-w-xl leading-relaxed text-sm mb-10">
-          I&apos;m an architect turned software developer who builds computational
+          I&apos;m an architectutal designer turned software developer who builds computational
           design tools, automation pipelines, and data-driven workflows for the
-          AEC industry. With a background in architecture and a Master&apos;s in
-          Information Technologies from TUM, I bridge design thinking with
-          robust software engineering to solve complex building and urban
-          design challenges.
+          AEC industry. With a background in architecture and a computational postgraduate degree, I bridge design thinking with
+          robust software engineering to solve complex building and urban design challenges.
         </p>
 
         <div className="flex gap-4 flex-wrap mb-12">

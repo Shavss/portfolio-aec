@@ -3,7 +3,7 @@ export const featured = [
       name: 'Climate Active Envelopes',
       subtitle: 'Research Assistant — Professorship of Digital Fabrication',
       description:
-        'Contributed to an open-source computational design and robotic fabrication research project for climate-responsive brick wall assemblies. Extended the core assembly module with bond pattern algorithms, shading logic, and ornament generation using COMPAS graph data structures. Built Grasshopper tools for brick layout visualisation, fabrication simulation, and JSON export of positions and sequencing for the ABB robot.',
+        'Contributed to an open-source computational design and robotic fabrication research project for climate-responsive brick wall assemblies. Extended the core assembly module with bond pattern algorithms, shading logic, and ornament generation using COMPAS graph data structures.',
       tags: ['Python', 'COMPAS', 'Rhino/Grasshopper', 'ABB Robotics', 'ROS', 'Docker', 'Shapely'],
       url: 'https://shavss.github.io/climate_active_envelopes/',
   },
