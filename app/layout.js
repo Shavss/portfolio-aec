@@ -16,9 +16,9 @@ const workSans = Work_Sans({
 })
 
 export const metadata = {
-  title: 'Kacper Ryske — Software Developer',
+  title: 'Kacper Ryske — Computational Designer',
   description:
-    'Portfolio of Kacper Ryske — software developer specialising in automation, data systems, and intelligent applications.',
+    'Portfolio of Kacper Ryske — computational designer specialising in automation, data systems, and intelligent applications.',
 }
 
 export default function RootLayout({ children }) {

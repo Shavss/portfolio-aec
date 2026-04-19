@@ -8,6 +8,7 @@ const SKILL_GROUPS = [
   { label: 'ML / AI', items: ['PyTorch', 'ResNet', 'XGBoost', 'Transformers'] },
   { label: 'WEB', items: ['React', 'Next.js', 'Node.js', 'Three.js'] },
   { label: 'TOOLS', items: ['Git', 'Docker', 'Azure', 'Jupyter'] },
+  { label: 'COMPUTATIONAL', items: ['Rhino 3D', 'Grasshopper', 'Revit', 'Dynamo'] },
 ]
 
 const fade = {
@@ -59,13 +60,13 @@ export default function Hero() {
         >
           <div>
             <h2 className="font-display text-sm md:text-base text-ink uppercase tracking-wider leading-relaxed">
-              Software Developer<br />
-              &amp; ML Systems
+              Computational Designer<br />
+              &amp; Software Developer
             </h2>
           </div>
           <div>
             <p className="font-body text-sm text-muted leading-relaxed">
-              Trained as an architect. Ended up building ML pipelines. Turns out the instinct is the same. Both collapse if the foundation is wrong. I like the messy problems where the model is only half the story. The other half is making it actually work outside a notebook.
+              Trained as an architect, now building computational tools that bridge design and software. I work across parametric modelling, automation, and ML systems — from Grasshopper scripts that generate geometry to pipelines that make data actually useful. The instinct is always the same: if the logic is sound, the output takes care of itself.
             </p>
           </div>
         </motion.div>
@@ -81,7 +82,7 @@ export default function Hero() {
         <motion.div
           variants={fade}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-0"
+          className="grid grid-cols-2 md:grid-cols-5 gap-0"
         >
           {SKILL_GROUPS.map((group) => (
             <div key={group.label} className="pr-4">
