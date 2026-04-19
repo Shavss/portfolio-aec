@@ -1,105 +1,130 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import AIOrb from './AiOrb'
+import GridPulse from './GridPulse'
 
-const basePath = '/portfolio-aec'
-
-const TECHS = [
-  { name: 'Rhino / GH',  icon: `${basePath}/images/logo-grasshopper-10.png` },
-  { name: 'Python',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-  { name: 'C#',           icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
-  { name: 'JavaScript',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  { name: 'SQL',          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg' },
-  { name: 'Power BI',     icon: null },
-  { name: 'React',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-  { name: 'Docker',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+const SKILL_GROUPS = [
+  { label: 'LANGUAGES', items: ['Python', 'JavaScript', 'C#', 'SQL'] },
+  { label: 'ML / AI', items: ['PyTorch', 'ResNet', 'XGBoost', 'Transformers'] },
+  { label: 'WEB', items: ['React', 'Next.js', 'Node.js', 'Three.js'] },
+  { label: 'TOOLS', items: ['Git', 'Docker', 'Azure', 'Jupyter'] },
 ]
 
-function TechIcon({ name }) {
-  const icons = {
-    'Power BI': (
-      <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="18" width="4" height="8" rx="1" fill="#6667ab"/>
-        <rect x="12" y="12" width="4" height="14" rx="1" fill="#7c6af7"/>
-        <rect x="18" y="8" width="4" height="18" rx="1" fill="#a89cf7"/>
-        <rect x="24" y="4" width="4" height="22" rx="1" fill="#c4b8fc"/>
-      </svg>
-    ),
-  }
-  return icons[name] || null
+const fade = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
 }
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 max-w-5xl mx-auto">
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-10 pt-8 md:pt-12">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        initial="initial"
+        animate="animate"
+        transition={{ staggerChildren: 0.12 }}
       >
-        <p className="text-[#7c6af7] text-sm tracking-widest uppercase mb-4 font-mono">
-          Hi, I&apos;m
-        </p>
+        {/* Thick rule */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="h-[3px] bg-ink mb-10 md:mb-14"
+        />
 
-        {/* Name + orb row */}
-        <div className="flex items-center gap-6 mb-4">
+        {/* Name + GridPulse row */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          className="flex justify-between items-start"
+        >
+          <h1 className="font-display text-5xl md:text-[6rem] lg:text-[9rem] font-bold leading-[0.88] tracking-tight text-ink uppercase">
+            Kacper<br />Ryske
+          </h1>
+          <div className="mt-3">
+            <GridPulse />
+          </div>
+        </motion.div>
+
+        {/* Thin rule */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          className="h-px bg-rule mt-8 mb-8 md:mt-12 md:mb-10"
+        />
+
+        {/* Two-column: role + bio */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16"
+        >
           <div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-              Kacper Ryske
-            </h1>
-            <h2 className="text-xl md:text-2xl text-gray-400 font-light mt-2">
-              Software Developer &amp; Computational Designer
+            <h2 className="font-display text-sm md:text-base text-ink uppercase tracking-wider leading-relaxed">
+              Software Developer<br />
+              &amp; ML Systems
             </h2>
           </div>
-          <div className="hidden md:block ml-auto">
-            <AIOrb size={180} />
+          <div>
+            <p className="font-body text-sm text-muted leading-relaxed">
+              Trained as an architect. Ended up building ML pipelines. Turns out the instinct is the same. Both collapse if the foundation is wrong. I like the messy problems where the model is only half the story. The other half is making it actually work outside a notebook.
+            </p>
           </div>
-        </div>
+        </motion.div>
 
-        <p className="text-gray-500 max-w-xl leading-relaxed text-sm mb-10">
-          I&apos;m an architectutal designer turned software developer who builds computational
-          design tools, automation pipelines, and data-driven workflows for the
-          AEC industry. With a background in architecture and a computational postgraduate degree, I bridge design thinking with
-          robust software engineering to solve complex building and urban design challenges.
-        </p>
+        {/* Thin rule */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          className="h-px bg-rule mt-8 mb-6 md:mt-10 md:mb-8"
+        />
 
-        <div className="flex gap-4 flex-wrap mb-12">
+        {/* Skills breakdown */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-0"
+        >
+          {SKILL_GROUPS.map((group) => (
+            <div key={group.label} className="pr-4">
+              <span className="font-display text-[10px] text-accent uppercase tracking-[0.2em] block mb-2">
+                {group.label}
+              </span>
+              <div className="space-y-0.5 pb-2">
+                {group.items.map((item) => (
+                  <p key={item} className="font-mono text-xs text-muted tracking-wider">
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Thin rule */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          className="h-px bg-rule mt-2 mb-2 md:mt-4 md:mb-4"
+        />
+
+        {/* CTAs */}
+        <motion.div
+          variants={fade}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="flex justify-end gap-8"
+        >
           <a
             href="#projects"
-            className="px-6 py-3 bg-[#7c6af7] text-white text-sm tracking-widest uppercase rounded hover:bg-[#6a58e0] transition-colors"
+            className="font-mono text-xs text-ink tracking-wider uppercase hover:text-accent transition-colors"
           >
-            View Work
+            View Work &rarr;
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 border border-white/10 text-gray-300 text-sm tracking-widest uppercase rounded hover:border-[#7c6af7] hover:text-white transition-all"
+            className="font-mono text-xs text-ink tracking-wider uppercase hover:text-accent transition-colors"
           >
-            Contact
+            Contact &rarr;
           </a>
-        </div>
-
-        {/* Tech stack grid */}
-        <div className="grid grid-cols-4 gap-3">
-          {TECHS.map((tech) => (
-            <div
-              key={tech.name}
-              className="flex flex-col items-center gap-2 p-4 rounded-xl border border-white/10 bg-white/5 hover:border-[#7c6af7]/40 hover:bg-white/10 transition-all"
-            >
-              {tech.icon ? (
-                <img
-                  src={tech.icon}
-                  alt={tech.name}
-                  className="w-8 h-8"
-                />
-              ) : (
-                <TechIcon name={tech.name} />
-              )}
-              <span className="text-xs text-gray-400">{tech.name}</span>
-            </div>
-          ))}
-        </div>
-
+        </motion.div>
       </motion.div>
     </section>
   )

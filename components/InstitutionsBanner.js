@@ -1,72 +1,50 @@
-'use client'
-
-import { useEffect, useRef } from 'react'
-
 const INSTITUTIONS = [
-  { name: 'Technical University of Munich' },
-  { name: 'University of Glasgow' },
-  { name: 'Siemens' },
-  { name: 'David Chipperfield Architects' },
-  { name: 'ZM-I' },
-  { name: 'Innovia Partners' },
-  { name: 'MIT Senseable City Lab' },
+  'Technical University of Munich',
+  'Siemens',
+  'David Chipperfield Architects',
+  'Zilch + Müller Ingenieure',
+  'Innovia Partners',
+  'MIT Senseable City Lab',
 ]
 
-const ITEMS = [...INSTITUTIONS, ...INSTITUTIONS]
+function MarqueeSet() {
+  return (
+    <>
+      {INSTITUTIONS.map((name, i) => (
+        <span key={i} className="flex-shrink-0 flex items-center">
+          <span
+            className="font-mono uppercase text-accent whitespace-nowrap"
+            style={{ fontSize: '11px', letterSpacing: '0.12em' }}
+          >
+            {name}
+          </span>
+          <span
+            className="text-muted mx-3 select-none"
+            aria-hidden="true"
+            style={{ fontSize: '11px' }}
+          >
+            /
+          </span>
+        </span>
+      ))}
+    </>
+  )
+}
 
 export default function InstitutionsBanner() {
-  const trackRef = useRef(null)
-  const posRef = useRef(0)
-  const rafRef = useRef(null)
-  const pausedRef = useRef(false)
-
-  useEffect(() => {
-    const track = trackRef.current
-    if (!track) return
-
-    const speed = 0.35
-
-    const tick = () => {
-      if (!pausedRef.current) {
-        const halfWidth = track.scrollWidth / 2
-        posRef.current += speed
-        if (posRef.current >= halfWidth) posRef.current = 0
-        track.style.transform = `translateX(-${posRef.current}px)`
-      }
-      rafRef.current = requestAnimationFrame(tick)
-    }
-
-    rafRef.current = requestAnimationFrame(tick)
-
-    const pause = () => { pausedRef.current = true }
-    const resume = () => { pausedRef.current = false }
-
-    track.addEventListener('mouseenter', pause)
-    track.addEventListener('mouseleave', resume)
-
-    return () => {
-      cancelAnimationFrame(rafRef.current)
-      track.removeEventListener('mouseenter', pause)
-      track.removeEventListener('mouseleave', resume)
-    }
-  }, [])
-
   return (
-    <div className="w-full py-10 border-y border-white/5">
-      <p className="text-center text-xs tracking-widest uppercase text-white/30 mb-6">
-        Institutions &amp; organisations I&apos;ve worked with
+    <div className="mt-16">
+      <p
+        className="font-mono uppercase text-muted mb-3"
+        style={{ fontSize: '11px', letterSpacing: '0.12em' }}
+      >
+        Already worked with
       </p>
 
       <div className="overflow-hidden">
-        <div ref={trackRef} className="flex whitespace-nowrap will-change-transform">
-          {ITEMS.map((inst, i) => (
-            <div key={i} className="inline-flex items-center flex-shrink-0">
-              <span className="text-sm font-semibold tracking-widest uppercase text-white/70 px-8">
-                {inst.name}
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6667AB] flex-shrink-0" />
-            </div>
-          ))}
+        <div className="marquee-track" style={{ animationDuration: '50s' }}>
+          <MarqueeSet />
+          <MarqueeSet />
         </div>
       </div>
     </div>

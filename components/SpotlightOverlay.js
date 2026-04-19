@@ -5,8 +5,12 @@ import { useEffect, useRef, useState } from 'react'
 const RADIUS = 100
 const SPEED = 4.2
 const EXPAND_DURATION = 1000
+
+// PANTONE 11-4201 TCX — Blanc de Blanc (warm off-white)
 const OVERLAY_COLOR = '#0A0A0A'
 const OVERLAY_COLOR_2 = '#E2E8F0'
+
+// VeryPeri — PANTONE Color of the Year 2022
 const ACCENT_COLOR = '#0A0A0A'
 
 export default function SpotlightOverlay() {
@@ -29,7 +33,10 @@ export default function SpotlightOverlay() {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
       if (posRef.current.x === 0 && posRef.current.y === 0) {
-        posRef.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+        posRef.current = {
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+        }
       }
     }
     resize()
@@ -49,6 +56,7 @@ export default function SpotlightOverlay() {
         ctx.clearRect(0, 0, W, H)
         ctx.fillStyle = OVERLAY_COLOR
         ctx.fillRect(0, 0, W, H)
+
         ctx.save()
         ctx.globalCompositeOperation = 'destination-out'
         ctx.beginPath()
@@ -70,6 +78,7 @@ export default function SpotlightOverlay() {
       const vel = velRef.current
       pos.x += vel.x
       pos.y += vel.y
+
       if (pos.x - RADIUS < 0)  { pos.x = RADIUS;     vel.x =  Math.abs(vel.x) }
       if (pos.x + RADIUS > W)  { pos.x = W - RADIUS; vel.x = -Math.abs(vel.x) }
       if (pos.y - RADIUS < 0)  { pos.y = RADIUS;     vel.y =  Math.abs(vel.y) }
@@ -78,6 +87,7 @@ export default function SpotlightOverlay() {
       ctx.clearRect(0, 0, W, H)
       ctx.fillStyle = OVERLAY_COLOR
       ctx.fillRect(0, 0, W, H)
+
       ctx.save()
       ctx.globalCompositeOperation = 'destination-out'
       ctx.beginPath()
@@ -85,6 +95,7 @@ export default function SpotlightOverlay() {
       ctx.fillStyle = 'rgba(0,0,0,1)'
       ctx.fill()
       ctx.restore()
+
       ctx.save()
       ctx.beginPath()
       ctx.arc(pos.x, pos.y, RADIUS, 0, Math.PI * 2)
@@ -109,6 +120,7 @@ export default function SpotlightOverlay() {
         rafRef.current = requestAnimationFrame(loop)
       })
     }
+
     canvas.addEventListener('click', handleClick)
 
     return () => {
@@ -119,5 +131,12 @@ export default function SpotlightOverlay() {
   }, [])
 
   if (done) return null
-  return <canvas ref={canvasRef} className="fixed inset-0 z-[100]" style={{ cursor: 'default' }} />
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 z-[100]"
+      style={{ cursor: 'default' }}
+    />
+  )
 }

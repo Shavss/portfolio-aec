@@ -28,6 +28,8 @@ export default function AIOrb({ size = 220 }) {
       const dot = document.createElement('span')
       const dotSize = (1.0 + Math.random() * 1.0).toFixed(2) + 'px'
       const pulse = (3.8 + Math.random() * 3.6).toFixed(2) + 's'
+
+      // Latitude wave — dots on same horizontal ring pulse together
       const delay = (-(phi / Math.PI) * 4).toFixed(2) + 's'
 
       dot.style.cssText = `
@@ -50,6 +52,7 @@ export default function AIOrb({ size = 220 }) {
     }
     orb.appendChild(fragment)
 
+    // Mouse tracking
     const handleMouseMove = (e) => {
       const cx = window.innerWidth / 2
       const cy = window.innerHeight / 2
@@ -60,6 +63,7 @@ export default function AIOrb({ size = 220 }) {
     }
     window.addEventListener('mousemove', handleMouseMove)
 
+    // Smooth lerp loop
     const lerp = (a, b, t) => a + (b - a) * t
     const tick = () => {
       rotRef.current.x = lerp(rotRef.current.x, targetRef.current.x, 0.05)

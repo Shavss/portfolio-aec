@@ -1,2 +1,2 @@
 # Shavss.github.io
-Personal portfolio - Kacper Ryske 
+Personal portfolio - Kacper Ryske

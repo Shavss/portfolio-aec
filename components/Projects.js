@@ -4,66 +4,78 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { featured } from '/data/projectsData'
 
-function ProjectCard({ p, i }) {
-  return (
-    <motion.a
-      href={p.url}
-      target="_blank"
-      rel="noreferrer"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: i * 0.1 }}
-      className="project-card block p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:border-[#7c6af7]/40 hover:bg-white/[0.04] group"
-      data-hover
-    >
-      <div className="flex justify-between items-start mb-1">
-        <h3 className="text-white font-semibold text-sm leading-snug group-hover:text-[#a89cf7] transition-colors">
-          {p.name}
-        </h3>
-        <svg className="w-4 h-4 text-gray-600 group-hover:text-[#7c6af7] transition-colors flex-shrink-0 ml-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 7l-10 10M7 7h10v10" />
-        </svg>
-      </div>
-      <p className="text-[#7c6af7] text-xs mb-3">{p.subtitle}</p>
-      <p className="text-gray-500 text-xs leading-relaxed mb-4">{p.description}</p>
-      <div className="flex flex-wrap gap-2">
-        {p.tags.map(t => (
-          <span key={t} className="tag">{t}</span>
-        ))}
-      </div>
-    </motion.a>
-  )
+const fade = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
 }
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 max-w-5xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <p className="text-[#7c6af7] text-xs tracking-widest uppercase mb-2">Selected Work</p>
-        <h2 className="text-3xl font-bold text-white mb-12">Projects</h2>
+    <section id="projects" className="py-20 md:py-32 px-6 md:px-10">
+      {/* Section header */}
+      <motion.div {...fade} transition={{ duration: 0.5 }}>
+        <p className="font-mono text-xs text-muted tracking-widest uppercase mb-3">
+          Selected Work
+        </p>
+        <div className="h-[3px] bg-ink" />
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-        {featured.map((p, i) => (
-          <ProjectCard key={p.name} p={p} i={i} />
-        ))}
-      </div>
+      {/* Project list — ruled entries */}
+      {featured.map((p, i) => (
+        <motion.div
+          key={p.name}
+          className="project-entry group"
+          {...fade}
+          transition={{ duration: 0.5, delay: i * 0.06 }}
+        >
+          <Link href={`/projects/${p.slug}`} className="block">
+            <div className="border-t border-rule pt-8 pb-10">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+                {/* Number */}
+                <div className="md:col-span-1">
+                  <span className="font-mono text-xs text-muted">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
 
-      <div className="text-center">
+                {/* Name + subtitle + description */}
+                <div className="md:col-span-7">
+                  <h3 className="font-display text-lg md:text-2xl text-ink uppercase tracking-tight mb-1 group-hover:text-accent transition-colors">
+                    {p.name}
+                  </h3>
+                  <p className="font-mono text-xs text-accent tracking-wide mb-4">
+                    {p.subtitle}
+                  </p>
+                  <p className="font-body text-sm text-muted leading-relaxed">
+                    {p.description}
+                  </p>
+                </div>
+
+                {/* Tags */}
+                <div className="md:col-span-4 md:flex md:flex-col md:items-end md:justify-end">
+                  <p className="tag leading-relaxed text-right hidden md:block">
+                    {p.tags.join(' / ')}
+                  </p>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 md:hidden">
+                    {p.tags.map(t => (
+                      <span key={t} className="tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </motion.div>
+      ))}
+
+      {/* View all link */}
+      <div className="border-t border-rule pt-2">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#a89cf7] transition-colors tracking-widest uppercase"
+          className="font-mono text-xs text-ink tracking-wider uppercase hover:text-accent transition-colors"
         >
-          View all projects
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 7l-10 10M7 7h10v10" />
-          </svg>
+          View All Projects &rarr;
         </Link>
       </div>
     </section>

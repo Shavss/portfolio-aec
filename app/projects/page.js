@@ -1,18 +1,20 @@
 import { all } from '/data/projectsData'
 import Link from 'next/link'
+import CursorGrid from '../../components/CursorGrid'
 
 export const metadata = {
   title: 'Projects — Kacper Ryske',
-  description: 'All projects by Kacper Ryske — computational design, software development, and AEC technology.',
+  description: 'All projects by Kacper Ryske — ML research, full-stack, data engineering.',
 }
 
 export default function ProjectsPage() {
   return (
-    <main className="relative min-h-screen bg-[#0e1529] px-6 py-24">
-      <div className="max-w-4xl mx-auto">
+    <main className="relative min-h-screen bg-canvas px-6 md:px-10 py-24">
+      <CursorGrid />
+      <div className="max-w-6xl mx-auto">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#a89cf7] transition-colors tracking-widest uppercase mb-12"
+          className="inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-accent transition-colors tracking-wider uppercase mb-16"
         >
           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -20,35 +22,59 @@ export default function ProjectsPage() {
           Back
         </Link>
 
-        <p className="text-[#7c6af7] text-xs tracking-widest uppercase mb-2">All Work</p>
-        <h1 className="text-4xl font-bold text-white mb-16">Projects</h1>
+        <p className="font-mono text-xs text-muted tracking-widest uppercase mb-3">
+          All Work
+        </p>
+        <div className="h-[3px] bg-ink mb-0" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {all.map((p) => (
-            <a
-              key={p.name}
-              href={p.url}
-              target="_blank"
-              rel="noreferrer"
-              className="project-card block p-6 rounded-lg border border-white/5 bg-white/[0.02] hover:border-[#7c6af7]/40 hover:bg-white/[0.04] group"
-            >
-              <div className="flex justify-between items-start mb-1">
-                <h3 className="text-white font-semibold text-sm leading-snug group-hover:text-[#a89cf7] transition-colors">
-                  {p.name}
-                </h3>
-                <svg className="w-4 h-4 text-gray-600 group-hover:text-[#7c6af7] transition-colors flex-shrink-0 ml-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 7l-10 10M7 7h10v10" />
-                </svg>
+        {all.map((p, i) => (
+          <Link
+            key={p.name}
+            href={`/projects/${p.slug}`}
+            className="project-entry block group"
+          >
+            <div className="border-t border-rule pt-8 pb-10">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+                <div className="md:col-span-1">
+                  <span className="font-mono text-xs text-muted">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+
+                <div className="md:col-span-7">
+                  <h3 className="font-display text-lg md:text-2xl text-ink uppercase tracking-tight mb-1 group-hover:text-accent transition-colors">
+                    {p.name}
+                  </h3>
+                  <p className="font-mono text-xs text-accent tracking-wide mb-4">
+                    {p.subtitle}
+                  </p>
+                  <p className="font-body text-sm text-muted leading-relaxed">
+                    {p.description}
+                  </p>
+                </div>
+
+                <div className="md:col-span-4 md:flex md:flex-col md:items-end md:justify-end">
+                  <p className="tag leading-relaxed text-right hidden md:block">
+                    {p.tags.join(' / ')}
+                  </p>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 md:hidden">
+                    {p.tags.map(t => (
+                      <span key={t} className="tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <p className="text-[#7c6af7] text-xs mb-3">{p.subtitle}</p>
-              <p className="text-gray-500 text-xs leading-relaxed mb-4">{p.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {p.tags.map(t => (
-                  <span key={t} className="tag">{t}</span>
-                ))}
-              </div>
-            </a>
-          ))}
+            </div>
+          </Link>
+        ))}
+
+        <div className="border-t border-rule pt-8">
+          <Link
+            href="/"
+            className="font-mono text-xs text-ink tracking-wider uppercase hover:text-accent transition-colors"
+          >
+            &larr; Back Home
+          </Link>
         </div>
       </div>
     </main>

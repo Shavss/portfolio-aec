@@ -2,30 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+/* ── Design System Tokens ── */
+
+/* Theme A — Dark Bauhaus (default) */
+:root,
+[data-theme="a"] {
+  --color-canvas: #0A0A0A;
+  --color-surface: #111111;
+  --color-ink: #E8E4DC;
+  --color-muted: #8A8480;
+  --color-accent: #D4580A;
+  --color-rule: #2A2A2A;
+  --color-stroke: #1E1E1E;
+  --color-canvas-alpha: rgba(10, 10, 10, 0.92);
+  --color-ink-faded: rgba(232, 228, 220, 0.6);
 }
+
+/* Theme B — Light Swiss Editorial */
+[data-theme="b"] {
+  --color-canvas: #F5F2EC;
+  --color-surface: #EDEAE3;
+  --color-ink: #0A0A0A;
+  --color-muted: #5A5652;
+  --color-accent: #D4580A;
+  --color-rule: #D0CDC6;
+  --color-stroke: #E0DDD6;
+  --color-canvas-alpha: rgba(245, 242, 236, 0.92);
+  --color-ink-faded: rgba(10, 10, 10, 0.55);
+}
+
+/* ── Base ── */
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #0e1529;
-  color: #e2e8f0;
-  font-family: var(--font-inter), Inter, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-work-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  background: var(--color-accent);
+  color: var(--color-canvas);
+}
+
+/* ── Scrollbar — minimal ── */
+
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0e1529;
+  background: var(--color-canvas);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #0e1529;
-  border-radius: 2px;
+  background: var(--color-rule);
 }
+
+/* ── Navigation link underline ── */
 
 .nav-link {
   position: relative;
@@ -38,7 +77,7 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  background: #6667ab;
+  background: var(--color-accent);
   transition: width 0.3s ease;
 }
 
@@ -46,23 +85,56 @@ body {
   width: 100%;
 }
 
-.project-card {
-  transition: transform 0.3s ease, border-color 0.3s ease;
+/* ── Project entry ── */
+
+.project-entry {
+  transition: padding-left 0.3s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
+.project-entry:hover {
+  padding-left: 0.5rem;
 }
+
+/* ── Tag — technical metadata ── */
 
 .tag {
-  font-size: 0.7rem;
-  padding: 2px 8px;
-  border-radius: 3px;
-  background: rgba(124, 106, 247, 0.15);
-  border: 1px solid rgba(124, 106, 247, 0.3);
-  color: #6667ab;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
-.mono {
-  font-family: var(--font-mono);
+/* ── Utility: ink at reduced opacity (for CSS-var-safe opacity) ── */
+
+.text-ink-faded {
+  color: var(--color-ink-faded);
+}
+
+/* ── Institutions marquee ── */
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── GridPulse terminal cursor blink ── */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.grid-pulse-cursor {
+  animation: blink 1s steps(1) infinite;
 }
